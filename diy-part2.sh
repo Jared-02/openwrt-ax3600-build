@@ -32,3 +32,29 @@ cd ../..
 # git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 # git clone https://github.com/zzsj0928/luci-app-pushbot.git package/luci-app-pushbot
 # git clone https://github.com/riverscn/openwrt-iptvhelper.git package/openwrt-iptvhelper
+
+# ipt2socks 上游仓库 hash 更新
+sed -i 's|73a2498dc95934c225d358707e7f7d060b5ce81aa45260ada09cbd15207d27d1|5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7|' feeds/packages/net/ipt2socks/Makefile
+
+# qca 包上游仓库地址更新
+find \
+  package/lean/shortcut-fe/simulated-driver/ \
+  package/qca/nss/qca-nss-cfi/ \
+  package/qca/nss/qca-nss-clients/ \
+  package/qca/nss/qca-nss-crypto/ \
+  package/qca/nss/qca-nss-drv-64/ \
+  package/qca/nss/qca-nss-drv/ \
+  package/qca/nss/qca-nss-ecm/ \
+  package/qca/nss/qca-nss-gmac/ \
+  package/qca/nss/qca-nss-rfs/ \
+  package/qca/nss/qca-ssdk-shell/ \
+  package/qca/nss/qca-ssdk/ \
+  -type f -name 'Makefile' \
+  -exec sed -i 's|source.codeaurora.org/quic|git.codelinaro.org/clo|' {} \;
+
+find \
+  package/qca/nss/qca-nss-clients-64/ \
+  package/qca/nss/qca-nss-dp/ \
+  package/qca/nss/qca-nss-ecm-64/ \
+  -type f -name 'Makefile' \
+  -exec sed -i 's|source.codeaurora.org/quic/cc-qrdk|git.codelinaro.org/clo/qsdk|' {} \;
